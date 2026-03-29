@@ -7,6 +7,75 @@ const projectOrder = [
   "ara"
 ];
 
+const optimizableImageFolders = [
+  "shots/",
+  "project cover images/",
+  "rodney project desc. images/",
+  "mirar project descp. images/",
+  "bridgent project descp. images/",
+  "ayinke project descp. images/",
+  "Ara project descp. images/",
+  "kora project desc. images/"
+];
+
+function canUseOptimizedAsset(path = "") {
+  return optimizableImageFolders.some((folder) => path.includes(folder));
+}
+
+function toOptimizedAssetPath(path) {
+  return path.replace(/(\.[^./]+)$/u, "__optimized$1");
+}
+
+function applyManagedImageSource(image, source) {
+  const nextSource = canUseOptimizedAsset(source) ? toOptimizedAssetPath(source) : source;
+
+  image.dataset.originalSrc = source;
+
+  if (nextSource === source) {
+    image.src = source;
+    return;
+  }
+
+  image.src = nextSource;
+  image.addEventListener(
+    "error",
+    () => {
+      if (image.dataset.originalSrc) {
+        image.src = image.dataset.originalSrc;
+      }
+    },
+    { once: true }
+  );
+}
+
+function configureImage(image, { critical = false } = {}) {
+  if (
+    image.classList.contains("lucide-icon") ||
+    image.classList.contains("social-brand-icon")
+  ) {
+    return;
+  }
+
+  image.decoding = "async";
+  image.fetchPriority = critical ? "high" : "low";
+  image.loading = critical ? "eager" : "lazy";
+
+  const source = image.getAttribute("src");
+  if (source && !source.includes("__optimized")) {
+    applyManagedImageSource(image, source);
+  }
+}
+
+function setupImagePerformance() {
+  document.querySelectorAll("img").forEach((image) => {
+    const critical =
+      image.classList.contains("identity-avatar") ||
+      image.classList.contains("project-cover-image");
+
+    configureImage(image, { critical });
+  });
+}
+
 const projectData = {
   rodneyai: {
     title: "RodneyAI",
@@ -525,7 +594,8 @@ if (projectPage) {
     titleNode.textContent = data.title;
     metaNode.textContent = `${data.meta} - Case study`;
     introNode.textContent = data.intro;
-    coverNode.src = data.coverImage;
+    configureImage(coverNode, { critical: true });
+    applyManagedImageSource(coverNode, data.coverImage);
     coverNode.alt = data.coverAlt;
     coverCaptionNode.textContent = data.coverCaption;
     caseStudyNode.textContent = "";
@@ -581,7 +651,8 @@ if (projectPage) {
 
         images.forEach((imagePath, imageIndex) => {
           const image = document.createElement("img");
-          image.src = imagePath;
+          configureImage(image);
+          applyManagedImageSource(image, imagePath);
           image.alt = `${data.title} design visual ${imageIndex + 1}`;
           grid.appendChild(image);
         });
@@ -662,5 +733,6 @@ if (projectPage) {
   }
 }
 
+setupImagePerformance();
 setupShotsLightbox();
 setupScrollReveal();

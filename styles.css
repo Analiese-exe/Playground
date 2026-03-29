@@ -283,6 +283,8 @@ button {
 
 .section {
   margin-top: 56px;
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 720px;
 }
 
 .section-label {
@@ -735,6 +737,8 @@ button {
 .case-section {
   display: grid;
   gap: 14px;
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 920px;
 }
 
 .case-label,
