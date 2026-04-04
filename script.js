@@ -443,6 +443,69 @@ document.querySelectorAll("[data-copy-email]").forEach((button) => {
   });
 });
 
+function setupThemeToggle() {
+  const toggle = document.querySelector("[data-theme-toggle]");
+
+  if (!toggle) {
+    return;
+  }
+
+  const root = document.documentElement;
+  const overlay = document.createElement("div");
+  let transitionTimer;
+
+  if (!root.dataset.theme) {
+    root.dataset.theme = "dark";
+  }
+
+  overlay.className = "theme-transition-overlay";
+  document.body.appendChild(overlay);
+
+  const syncThemeToggle = () => {
+    const isLight = root.dataset.theme === "light";
+    toggle.setAttribute("aria-pressed", isLight ? "true" : "false");
+    toggle.setAttribute("aria-label", isLight ? "Switch to dark mode" : "Switch to light mode");
+    toggle.title = isLight ? "Switch to dark mode" : "Switch to light mode";
+  };
+
+  syncThemeToggle();
+
+  toggle.addEventListener("click", (event) => {
+    const nextTheme = root.dataset.theme === "light" ? "dark" : "light";
+    const rect = toggle.getBoundingClientRect();
+    const originX =
+      typeof event.clientX === "number" && event.clientX > 0
+        ? `${event.clientX}px`
+        : `${rect.left + rect.width / 2}px`;
+    const originY =
+      typeof event.clientY === "number" && event.clientY > 0
+        ? `${event.clientY}px`
+        : `${rect.top + rect.height / 2}px`;
+
+    overlay.style.setProperty("--theme-origin-x", originX);
+    overlay.style.setProperty("--theme-origin-y", originY);
+    overlay.classList.remove("is-light", "is-dark", "is-active");
+    overlay.classList.add(nextTheme === "light" ? "is-light" : "is-dark");
+    void overlay.offsetWidth;
+    overlay.classList.add("is-active");
+
+    window.clearTimeout(transitionTimer);
+    transitionTimer = window.setTimeout(() => {
+      overlay.classList.remove("is-active");
+    }, 780);
+
+    root.dataset.theme = nextTheme;
+
+    try {
+      localStorage.setItem("portfolio-theme", nextTheme);
+    } catch {
+      // Ignore storage issues and keep the in-memory theme.
+    }
+
+    syncThemeToggle();
+  });
+}
+
 const projectPage = document.querySelector("[data-project-page]");
 
 function createDivider() {
@@ -508,10 +571,12 @@ function setupScrollReveal() {
   items.forEach((item) => observer.observe(item));
 }
 
-function setupShotsLightbox() {
-  const shotImages = Array.from(document.querySelectorAll(".shot-card img"));
+function setupImageLightbox() {
+  const lightboxImages = Array.from(
+    document.querySelectorAll(".shot-card img, .project-hero-media img, .case-grid img")
+  );
 
-  if (!shotImages.length) {
+  if (!lightboxImages.length) {
     return;
   }
 
@@ -527,12 +592,10 @@ function setupShotsLightbox() {
   closeButton.type = "button";
   closeButton.setAttribute("aria-label", "Close full image");
   closeButton.innerHTML = `
-    <img
-      class="lucide-icon"
-      src="lucide-main/lucide-main/icons/x.svg"
-      alt=""
-      aria-hidden="true"
-    />
+    <svg viewBox="0 0 24 24" class="lightbox-close-icon" aria-hidden="true">
+      <path d="M18 6L6 18"></path>
+      <path d="M6 6L18 18"></path>
+    </svg>
   `;
 
   lightbox.appendChild(closeButton);
@@ -550,10 +613,9 @@ function setupShotsLightbox() {
     document.body.style.overflow = "";
   };
 
-  shotImages.forEach((image) => {
-    image.style.cursor = "zoom-in";
+  lightboxImages.forEach((image) => {
     image.addEventListener("click", () => {
-      preview.src = image.currentSrc || image.src;
+      preview.src = image.dataset.originalSrc || image.currentSrc || image.src;
       preview.alt = image.alt || "Shot preview";
       active = true;
       lightbox.classList.add("is-open");
@@ -590,7 +652,7 @@ if (projectPage) {
   const sectionImages = projectSectionImages[key] || [];
 
   if (data && titleNode && metaNode && introNode && coverNode && coverCaptionNode && caseStudyNode) {
-    document.title = `${data.title} - Ukeje Analiese Ogochukwu`;
+    document.title = `${data.title} - Ukeje Analiese`;
     titleNode.textContent = data.title;
     metaNode.textContent = `${data.meta} - Case study`;
     introNode.textContent = data.intro;
@@ -734,5 +796,6 @@ if (projectPage) {
 }
 
 setupImagePerformance();
-setupShotsLightbox();
+setupThemeToggle();
+setupImageLightbox();
 setupScrollReveal();

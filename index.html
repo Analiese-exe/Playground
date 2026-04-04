@@ -3,7 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ukeje Analiese Ogochukwu - Product Designer</title>
+    <title>Ukeje Analiese - Product Designer</title>
+    <script>
+      (() => {
+        try {
+          const savedTheme = localStorage.getItem("portfolio-theme");
+          document.documentElement.dataset.theme = savedTheme === "light" ? "light" : "dark";
+        } catch {
+          document.documentElement.dataset.theme = "dark";
+        }
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,8 +29,8 @@
           <div class="identity-avatar-wrap">
             <img
               class="identity-avatar"
-              src="ME 6.jpeg"
-              alt="Portrait of Ukeje Analiese Ogochukwu"
+              src="profile-photo.jpeg"
+              alt="Portrait of Ukeje Analiese"
               loading="eager"
               decoding="async"
               fetchpriority="high"
@@ -28,26 +38,73 @@
             <span class="identity-status-dot" aria-hidden="true"></span>
           </div>
           <div class="identity-block">
-            <p class="identity-name">Ukeje Analiese Ogochukwu</p>
+            <p class="identity-name">Ukeje Analiese</p>
             <p class="identity-role">Product Designer</p>
           </div>
         </div>
-        <button
-          type="button"
-          class="copy-button"
-          data-copy-email="ao.ukeje@gmail.com"
-          data-copy-default="E-mail"
-          data-copy-success="Copied!"
-          aria-label="Copy email address"
-        >
-          <img
-            class="lucide-icon"
-            src="lucide-main/lucide-main/icons/mail.svg"
-            alt=""
-            aria-hidden="true"
-          />
-          <span data-copy-label-text>E-mail</span>
-        </button>
+        <div class="header-actions">
+          <button
+            type="button"
+            class="copy-button"
+            data-copy-email="ao.ukeje@gmail.com"
+            data-copy-default="E-mail"
+            data-copy-success="Copied!"
+            aria-label="Copy email address"
+          >
+            <img
+              class="lucide-icon"
+              src="lucide-main/lucide-main/icons/mail.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <span data-copy-label-text>E-mail</span>
+          </button>
+          <button
+            type="button"
+            class="theme-switch"
+            data-theme-toggle
+            aria-label="Switch to light mode"
+            aria-pressed="false"
+            title="Toggle color theme"
+          >
+            <span class="theme-switch-track" aria-hidden="true">
+              <span class="theme-switch-slot theme-switch-slot-light">
+                <svg viewBox="0 0 24 24" class="theme-switch-icon">
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <path d="M12 2V4"></path>
+                  <path d="M12 20V22"></path>
+                  <path d="M4.93 4.93L6.34 6.34"></path>
+                  <path d="M17.66 17.66L19.07 19.07"></path>
+                  <path d="M2 12H4"></path>
+                  <path d="M20 12H22"></path>
+                  <path d="M4.93 19.07L6.34 17.66"></path>
+                  <path d="M17.66 6.34L19.07 4.93"></path>
+                </svg>
+              </span>
+              <span class="theme-switch-slot theme-switch-slot-dark">
+                <svg viewBox="0 0 24 24" class="theme-switch-icon">
+                  <path d="M12 3a6 6 0 1 0 9 9 9 9 0 1 1-9-9Z"></path>
+                </svg>
+              </span>
+              <span class="theme-switch-thumb">
+                <svg viewBox="0 0 24 24" class="theme-switch-thumb-icon theme-switch-thumb-sun">
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <path d="M12 2V4"></path>
+                  <path d="M12 20V22"></path>
+                  <path d="M4.93 4.93L6.34 6.34"></path>
+                  <path d="M17.66 17.66L19.07 19.07"></path>
+                  <path d="M2 12H4"></path>
+                  <path d="M20 12H22"></path>
+                  <path d="M4.93 19.07L6.34 17.66"></path>
+                  <path d="M17.66 6.34L19.07 4.93"></path>
+                </svg>
+                <svg viewBox="0 0 24 24" class="theme-switch-thumb-icon theme-switch-thumb-moon">
+                  <path d="M12 3a6 6 0 1 0 9 9 9 9 0 1 1-9-9Z"></path>
+                </svg>
+              </span>
+            </span>
+          </button>
+        </div>
       </header>
 
       <section class="hero">
@@ -84,8 +141,8 @@
             </div>
           </article>
           <article class="experience-card">
-            <div class="experience-logo">
-              <img src="Experience/TRIVALUE.png" alt="Trivalue logo" loading="lazy" />
+            <div class="experience-logo experience-logo--contain">
+              <img src="Experience/trivalue logo.png" alt="Trivalue logo" loading="lazy" />
             </div>
             <div class="experience-body">
               <h2 class="experience-title">Digital Experience Designer</h2>
@@ -390,7 +447,22 @@
               />
             </a>
           </div>
-          <p class="signature-mark">Analiese Ukeje</p>
+          <div class="signature-mark signature-mark--image" aria-hidden="true">
+            <img
+              class="signature-image signature-image--dark"
+              src="signature-dark.png"
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+            <img
+              class="signature-image signature-image--light"
+              src="signature-light.png"
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
         </div>
       </section>
 
