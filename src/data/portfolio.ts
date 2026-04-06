@@ -408,28 +408,31 @@ export const award: Award = {
 };
 
 export const summaryParagraphs = [
-  "I'm a product designer focused on building digital experiences that are clear, structured, and practical.",
-  "My approach combines systems thinking, usability, and design clarity to create products that are not only visually refined, but functional and scalable. Hire me for your next project, and let's build something great together."
+  "I’ve been in the design industry for about two years, working on collaborative university projects that are currently being used by students and lecturers, as well as designing AI-powered solutions for startups and companies. I have a strong passion for learning and constantly improving, and I adapt quickly to new challenges. I’m hardworking, curious, and always ready to grow. You would absolutely love having me on your team!"
 ];
 
 export const socialLinks: SocialLink[] = [
   {
     label: "Send an email with Gmail",
+    text: "Mail",
     href: "https://mail.google.com/mail/?view=cm&fs=1&to=ao.ukeje@gmail.com",
     icon: "mail"
   },
   {
     label: "LinkedIn",
+    text: "LinkedIn",
     href: "https://www.linkedin.com/in/analiese-ukeje",
     icon: "linkedin"
   },
   {
     label: "Dribbble",
+    text: "Dribbble",
     href: "https://dribbble.com/Anna-Designs",
     icon: "dribbble"
   },
   {
     label: "Behance",
+    text: "Behance",
     href: "https://www.behance.net/analieseukeje12",
     icon: "behance"
   }

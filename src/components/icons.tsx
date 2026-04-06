@@ -101,3 +101,23 @@ export function XIcon(props: IconProps) {
     </IconBase>
   );
 }
+
+export function VolumeOnIcon(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <path d="M11 5 6 9H3v6h3l5 4z" />
+      <path d="M15.5 8.5a5 5 0 0 1 0 7" />
+      <path d="M18.5 5.5a9 9 0 0 1 0 13" />
+    </IconBase>
+  );
+}
+
+export function VolumeOffIcon(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <path d="M11 5 6 9H3v6h3l5 4z" />
+      <path d="m22 9-6 6" />
+      <path d="m16 9 6 6" />
+    </IconBase>
+  );
+}

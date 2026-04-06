@@ -57,6 +57,7 @@ export interface Award {
 
 export interface SocialLink {
   label: string;
+  text: string;
   href: string;
   icon: "mail" | "linkedin" | "dribbble" | "behance";
 }
