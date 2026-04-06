@@ -1,10 +1,12 @@
-import type { HeroContent } from "@/types/portfolio";
+import { HeroSocialLinks } from "@/components/HeroSocialLinks";
+import type { HeroContent, SocialLink } from "@/types/portfolio";
 
 interface HeroSectionProps {
   content: HeroContent;
+  socials: SocialLink[];
 }
 
-export function HeroSection({ content }: HeroSectionProps) {
+export function HeroSection({ content, socials }: HeroSectionProps) {
   return (
     <section className="hero" data-reveal>
       <h1>
@@ -15,6 +17,7 @@ export function HeroSection({ content }: HeroSectionProps) {
           <p key={paragraph}>{paragraph}</p>
         ))}
       </div>
+      <HeroSocialLinks socials={socials} />
     </section>
   );
 }

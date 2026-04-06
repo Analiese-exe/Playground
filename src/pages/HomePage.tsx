@@ -4,12 +4,12 @@ import { useLocation } from "react-router-dom";
 import { AwardsSection } from "@/components/AwardsSection";
 import { EducationSection } from "@/components/EducationSection";
 import { ExperienceSection } from "@/components/ExperienceSection";
+import { FooterBar } from "@/components/FooterBar";
 import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/HeroSection";
 import type { LightboxImage } from "@/components/Lightbox";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { ShotsSection } from "@/components/ShotsSection";
-import { SiteFooter } from "@/components/SiteFooter";
 import { StackSection } from "@/components/StackSection";
 import { SummarySection } from "@/components/SummarySection";
 import {
@@ -30,9 +30,17 @@ interface HomePageProps {
   theme: ThemeMode;
   onToggleTheme: (origin?: { x: number; y: number }) => void;
   onOpenLightbox: (image: LightboxImage) => void;
+  isAudioEnabled: boolean;
+  onToggleAudio: () => void;
 }
 
-export function HomePage({ theme, onToggleTheme, onOpenLightbox }: HomePageProps) {
+export function HomePage({
+  theme,
+  onToggleTheme,
+  onOpenLightbox,
+  isAudioEnabled,
+  onToggleAudio
+}: HomePageProps) {
   const location = useLocation();
 
   useEffect(() => {
@@ -56,16 +64,22 @@ export function HomePage({ theme, onToggleTheme, onOpenLightbox }: HomePageProps
 
   return (
     <main className="site-shell">
-      <Header profile={profile} theme={theme} onToggleTheme={onToggleTheme} />
-      <HeroSection content={heroContent} />
+      <Header
+        profile={profile}
+        theme={theme}
+        onToggleTheme={onToggleTheme}
+        isAudioEnabled={isAudioEnabled}
+        onToggleAudio={onToggleAudio}
+      />
+      <HeroSection content={heroContent} socials={socialLinks} />
       <ExperienceSection items={experiences} />
       <ProjectsSection items={projects} />
       <ShotsSection items={shots} onOpenLightbox={onOpenLightbox} />
       <EducationSection {...education} />
       <StackSection items={stack} />
       <AwardsSection {...award} />
-      <SummarySection paragraphs={summaryParagraphs} socials={socialLinks} />
-      <SiteFooter />
+      <SummarySection paragraphs={summaryParagraphs} />
+      <FooterBar />
     </main>
   );
 }

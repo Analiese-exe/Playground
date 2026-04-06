@@ -6,12 +6,14 @@ import { Lightbox } from "@/components/Lightbox";
 import type { LightboxImage } from "@/components/Lightbox";
 import { HomePage } from "@/pages/HomePage";
 import { ProjectPage } from "@/pages/ProjectPage";
+import { useUiAudio } from "@/hooks/useUiAudio";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useTheme } from "@/hooks/useTheme";
 
 function AppContent() {
   const location = useLocation();
   const { theme, toggleTheme, transition } = useTheme();
+  const { isAmbientEnabled, toggleAmbient } = useUiAudio();
   const [lightboxImage, setLightboxImage] = useState<LightboxImage | null>(null);
 
   useScrollReveal(location.pathname);
@@ -34,7 +36,13 @@ function AppContent() {
         <Route
           path="/"
           element={
-            <HomePage theme={theme} onToggleTheme={toggleTheme} onOpenLightbox={openLightbox} />
+            <HomePage
+              theme={theme}
+              onToggleTheme={toggleTheme}
+              onOpenLightbox={openLightbox}
+              isAudioEnabled={isAmbientEnabled}
+              onToggleAudio={toggleAmbient}
+            />
           }
         />
         <Route path="/projects/:projectSlug" element={<ProjectPage onOpenLightbox={openLightbox} />} />

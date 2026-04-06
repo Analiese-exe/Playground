@@ -12,10 +12,15 @@ export function ProjectsSection({ items }: ProjectsSectionProps) {
     <section className="section" id="projects">
       <p className="section-label">Projects</p>
       <div className="projects-grid">
-        {items.map((item) => (
+        {items.map((item, index) => (
           <Link className="project-card" key={item.slug} to={`/projects/${item.slug}`} data-reveal>
             <div className="project-thumb">
-              <ManagedImage src={item.coverImage} alt={item.coverAlt} className="project-thumb-image" />
+              <ManagedImage
+                src={item.coverImage}
+                alt={item.coverAlt}
+                className="project-thumb-image"
+                critical={index < 4}
+              />
             </div>
             <div className="project-copy">
               <p className="project-name">{item.title}</p>
