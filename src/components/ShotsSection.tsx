@@ -13,7 +13,6 @@ interface ShotsSectionProps {
 export function ShotsSection({ items, onOpenLightbox }: ShotsSectionProps) {
   const scrollerRef = useRef<HTMLDivElement | null>(null);
   const loopWidthRef = useRef(0);
-  const isHoveringRef = useRef(false);
   const isInteractingRef = useRef(false);
   const marqueeItems = [...items, ...items];
 
@@ -42,7 +41,7 @@ export function ShotsSection({ items, onOpenLightbox }: ShotsSectionProps) {
       previousTime = time;
       const speed = window.innerWidth <= 720 ? 22 : 32;
 
-      if (!isHoveringRef.current && !isInteractingRef.current) {
+      if (!isInteractingRef.current) {
         scroller.scrollLeft += speed * delta;
 
         if (scroller.scrollLeft >= loopWidth) {
@@ -97,11 +96,7 @@ export function ShotsSection({ items, onOpenLightbox }: ShotsSectionProps) {
         className="shots-marquee"
         aria-label="Shots carousel"
         data-reveal
-        onMouseEnter={() => {
-          isHoveringRef.current = true;
-        }}
         onMouseLeave={() => {
-          isHoveringRef.current = false;
           isInteractingRef.current = false;
         }}
       >
