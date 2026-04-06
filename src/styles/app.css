@@ -1995,12 +1995,15 @@ button {
   align-items: center !important;
   justify-content: space-between;
   flex-wrap: nowrap;
+  column-gap: 12px;
+  row-gap: 12px;
 }
 
 .project-nav-link,
 .project-nav-link.next {
   align-items: center !important;
   text-align: left !important;
+  padding: 11px 20px;
 }
 
 @media (max-width: 720px) {
@@ -2015,12 +2018,15 @@ button {
 
 @media (max-width: 520px) {
   .project-pagination {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
     gap: 8px;
   }
 
   .project-nav-link {
     gap: 8px;
-    padding: 10px 12px;
+    padding: 10px 16px;
   }
 
   .project-nav-title {

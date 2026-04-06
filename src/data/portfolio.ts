@@ -206,7 +206,8 @@ export const projects: ProjectDetail[] = [
         images: [
           "/Mirar descp images/Bill and bill details/bills page light mode.png",
           "/Mirar descp images/Bill and bill details/bills page dark mode.png"
-        ]
+        ],
+        singleColumn: true
       },
       {
         title: "Accounts (Including Add Account & Update Balance)",
@@ -214,10 +215,9 @@ export const projects: ProjectDetail[] = [
           "The accounts section gives users visibility into where their money is and how it aligns with upcoming bills. Users can add new accounts, view balances across different banks, and update balances manually to keep information accurate. The account details screen shows assigned bills and required amounts, helping users understand how each account contributes to covering their financial responsibilities.",
         images: [
           "/Mirar descp images/Accounts/account and account details  light mode.png",
-          "/Mirar descp images/Accounts/account and account details  dark mode.png",
-          "/Mirar descp images/Accounts/add account and update balance light mode.png",
-          "/Mirar descp images/Accounts/add account and update balance dark mode.png"
-        ]
+          "/Mirar descp images/Accounts/add account and update balance light mode.png"
+        ],
+        singleColumn: true
       },
       {
         title: "Notifications",
@@ -226,6 +226,15 @@ export const projects: ProjectDetail[] = [
         images: [
           "/Mirar descp images/Notifications/notifications page light mode.png",
           "/Mirar descp images/Notifications/notifications page  dark mode.png"
+        ]
+      },
+      {
+        title: "Branding & Presentation",
+        body:
+          "For Mirar, I designed the logo, branding, and overall visual identity to reflect clarity, control, and trust. The visual system is clean and intentional, using structured layouts, clear typography, and a cohesive color palette to make information easy to understand at a glance. I focused on creating a calm, modern aesthetic that supports the product's awareness-first approach, ensuring users feel guided rather than overwhelmed. Every element, from the logo to the interface visuals, was crafted to reinforce simplicity, consistency, and confidence in managing financial obligations.",
+        images: [
+          "/Mirar descp images/Brand & Presentation/Frame 2147223340.png",
+          "/Mirar descp images/Brand & Presentation/Gemini_Generated_Image_4ur82x4ur82x4ur8 1.png"
         ]
       }
     ]
