@@ -3,6 +3,7 @@ const optimizableImageFolders = [
   "/project cover images/",
   "/rodney project desc. images/",
   "/mirar project descp. images/",
+  "/Mirar descp images/",
   "/bridgent project descp. images/",
   "/ayinke project descp. images/",
   "/Ara project descp. images/",
