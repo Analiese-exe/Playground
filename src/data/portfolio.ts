@@ -217,7 +217,7 @@ export const projects: ProjectDetail[] = [
         images: [
           "/Mirar descp images/Accounts/account and account details  light mode.png",
           "/Mirar descp images/Accounts/account and account details  dark mode.png",
-          "/Mirar descp images/Accounts/add account and update balance light mode.png",
+          "/Mirar descp images/Accounts/add account and update balance light mode-1.png",
           "/Mirar descp images/Accounts/add account and update balance dark mode.png"
         ]
       },
@@ -267,7 +267,7 @@ export const projects: ProjectDetail[] = [
         title: "2. Structured Interface & Readability",
         body:
           "I designed the interface to maintain clarity while handling dense and strategic content. Through careful use of typography, spacing, and alignment, the site remains easy to scan and visually balanced.",
-        images: ["/bridgent project descp. images/Structured Interface & Readability/MacBook Pro 16_ - 8.png"]
+        images: ["/bridgent project descp. images/Structured Interface & Readability/current opportunities.png"]
       },
       {
         title: "3. System-Based Design for Growth",

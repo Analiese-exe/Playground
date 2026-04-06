@@ -13,7 +13,8 @@ interface ShotsSectionProps {
 export function ShotsSection({ items, onOpenLightbox }: ShotsSectionProps) {
   const scrollerRef = useRef<HTMLDivElement | null>(null);
   const loopWidthRef = useRef(0);
-  const isInteractingRef = useRef(false);
+  const positionRef = useRef(0);
+  const resumeAtRef = useRef(0);
   const marqueeItems = [...items, ...items];
 
   useEffect(() => {
@@ -30,6 +31,7 @@ export function ShotsSection({ items, onOpenLightbox }: ShotsSectionProps) {
     const updateWidth = () => {
       loopWidth = scroller.scrollWidth / 2;
       loopWidthRef.current = loopWidth;
+      positionRef.current = Math.min(positionRef.current, Math.max(loopWidth - 1, 0));
     };
 
     const resizeObserver = new ResizeObserver(updateWidth);
@@ -39,14 +41,16 @@ export function ShotsSection({ items, onOpenLightbox }: ShotsSectionProps) {
     const tick = (time: number) => {
       const delta = (time - previousTime) / 1000;
       previousTime = time;
-      const speed = window.innerWidth <= 720 ? 22 : 32;
+      const speed = window.innerWidth <= 720 ? 18 : 26;
 
-      if (!isInteractingRef.current) {
-        scroller.scrollLeft += speed * delta;
+      if (time >= resumeAtRef.current && loopWidth > 0) {
+        positionRef.current += speed * delta;
 
-        if (scroller.scrollLeft >= loopWidth) {
-          scroller.scrollLeft -= loopWidth;
+        if (positionRef.current >= loopWidth) {
+          positionRef.current -= loopWidth;
         }
+
+        scroller.scrollLeft = positionRef.current;
       }
 
       frameId = window.requestAnimationFrame(tick);
@@ -67,7 +71,7 @@ export function ShotsSection({ items, onOpenLightbox }: ShotsSectionProps) {
       return;
     }
 
-    isInteractingRef.current = true;
+    resumeAtRef.current = performance.now() + 900;
     scroller.scrollBy({
       left: scroller.clientWidth * 0.72 * direction,
       behavior: "smooth"
@@ -84,8 +88,8 @@ export function ShotsSection({ items, onOpenLightbox }: ShotsSectionProps) {
         scroller.scrollLeft += loopWidth;
       }
 
-      isInteractingRef.current = false;
-    }, 380);
+      positionRef.current = scroller.scrollLeft;
+    }, 420);
   };
 
   return (
@@ -96,9 +100,6 @@ export function ShotsSection({ items, onOpenLightbox }: ShotsSectionProps) {
         className="shots-marquee"
         aria-label="Shots carousel"
         data-reveal
-        onMouseLeave={() => {
-          isInteractingRef.current = false;
-        }}
       >
         <button
           type="button"
@@ -112,19 +113,19 @@ export function ShotsSection({ items, onOpenLightbox }: ShotsSectionProps) {
           className="shots-scroller"
           ref={scrollerRef}
           onPointerDown={() => {
-            isInteractingRef.current = true;
+            resumeAtRef.current = performance.now() + 1400;
           }}
           onPointerUp={() => {
-            isInteractingRef.current = false;
+            resumeAtRef.current = performance.now() + 700;
           }}
           onPointerCancel={() => {
-            isInteractingRef.current = false;
+            resumeAtRef.current = performance.now() + 700;
           }}
           onTouchStart={() => {
-            isInteractingRef.current = true;
+            resumeAtRef.current = performance.now() + 1400;
           }}
           onTouchEnd={() => {
-            isInteractingRef.current = false;
+            resumeAtRef.current = performance.now() + 700;
           }}
           onScroll={() => {
             const loopWidth = loopWidthRef.current;
@@ -137,6 +138,12 @@ export function ShotsSection({ items, onOpenLightbox }: ShotsSectionProps) {
             if (scroller.scrollLeft >= loopWidth) {
               scroller.scrollLeft -= loopWidth;
             }
+
+            if (scroller.scrollLeft < 0) {
+              scroller.scrollLeft += loopWidth;
+            }
+
+            positionRef.current = scroller.scrollLeft;
           }}
         >
           <div className="shots-track">

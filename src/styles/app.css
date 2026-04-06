@@ -1917,7 +1917,9 @@ button {
   padding: 2px 0 8px;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
   cursor: grab;
   touch-action: pan-x;
 }
