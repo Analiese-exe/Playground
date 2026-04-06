@@ -1907,3 +1907,123 @@ button {
   aspect-ratio: auto;
   object-fit: cover;
 }
+
+.shots-marquee {
+  position: relative;
+}
+
+.shots-scroller {
+  overflow-x: auto;
+  padding: 2px 0 8px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+  cursor: grab;
+  touch-action: pan-x;
+}
+
+.shots-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.shots-scroller:active {
+  cursor: grabbing;
+}
+
+.shot-card,
+.shot-card img {
+  touch-action: pan-x;
+}
+
+.shots-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: none !important;
+  transform: none !important;
+}
+
+.shot-card {
+  flex: 0 0 clamp(184px, 23vw, 250px);
+}
+
+.shots-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(12, 12, 12, 0.74);
+  color: var(--text);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition:
+    opacity 180ms ease,
+    background-color 220ms ease,
+    border-color 220ms ease;
+}
+
+.shots-arrow--prev {
+  left: 10px;
+}
+
+.shots-arrow--next {
+  right: 10px;
+}
+
+.shots-marquee:hover .shots-arrow,
+.shots-marquee:focus-within .shots-arrow {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.shots-arrow:hover,
+.shots-arrow:focus-visible {
+  border-color: var(--line-strong);
+  background: rgba(12, 12, 12, 0.88);
+}
+
+.project-pagination {
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.project-nav-link,
+.project-nav-link.next {
+  align-items: center !important;
+  text-align: left !important;
+}
+
+@media (max-width: 720px) {
+  .shots-arrow {
+    display: none;
+  }
+
+  .shots-scroller {
+    cursor: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .project-pagination {
+    gap: 8px;
+  }
+
+  .project-nav-link {
+    gap: 8px;
+    padding: 10px 12px;
+  }
+
+  .project-nav-title {
+    display: none;
+  }
+}

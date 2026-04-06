@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 
+import { ArrowLeftIcon, ArrowRightIcon } from "@/components/icons";
 import { ManagedImage } from "@/components/ManagedImage";
 import type { LightboxImage } from "@/components/Lightbox";
 import type { ShotItem } from "@/types/portfolio";
@@ -10,41 +11,45 @@ interface ShotsSectionProps {
 }
 
 export function ShotsSection({ items, onOpenLightbox }: ShotsSectionProps) {
-  const trackRef = useRef<HTMLDivElement | null>(null);
+  const scrollerRef = useRef<HTMLDivElement | null>(null);
+  const loopWidthRef = useRef(0);
+  const isHoveringRef = useRef(false);
+  const isInteractingRef = useRef(false);
   const marqueeItems = [...items, ...items];
 
   useEffect(() => {
-    const track = trackRef.current;
+    const scroller = scrollerRef.current;
 
-    if (!track || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (!scroller || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       return undefined;
     }
 
     let frameId = 0;
-    let offset = 0;
     let previousTime = performance.now();
-    let loopWidth = track.scrollWidth / 2;
+    let loopWidth = scroller.scrollWidth / 2;
 
     const updateWidth = () => {
-      loopWidth = track.scrollWidth / 2;
+      loopWidth = scroller.scrollWidth / 2;
+      loopWidthRef.current = loopWidth;
     };
 
     const resizeObserver = new ResizeObserver(updateWidth);
-    resizeObserver.observe(track);
+    resizeObserver.observe(scroller);
     updateWidth();
 
     const tick = (time: number) => {
       const delta = (time - previousTime) / 1000;
       previousTime = time;
-      const speed = window.innerWidth <= 720 ? 20 : 29;
+      const speed = window.innerWidth <= 720 ? 22 : 32;
 
-      offset -= speed * delta;
+      if (!isHoveringRef.current && !isInteractingRef.current) {
+        scroller.scrollLeft += speed * delta;
 
-      if (Math.abs(offset) >= loopWidth) {
-        offset += loopWidth;
+        if (scroller.scrollLeft >= loopWidth) {
+          scroller.scrollLeft -= loopWidth;
+        }
       }
 
-      track.style.transform = `translate3d(${offset}px, 0, 0)`;
       frameId = window.requestAnimationFrame(tick);
     };
 
@@ -53,16 +58,93 @@ export function ShotsSection({ items, onOpenLightbox }: ShotsSectionProps) {
     return () => {
       window.cancelAnimationFrame(frameId);
       resizeObserver.disconnect();
-      track.style.transform = "translate3d(0, 0, 0)";
     };
   }, [items]);
+
+  const nudgeCarousel = (direction: 1 | -1) => {
+    const scroller = scrollerRef.current;
+
+    if (!scroller) {
+      return;
+    }
+
+    isInteractingRef.current = true;
+    scroller.scrollBy({
+      left: scroller.clientWidth * 0.72 * direction,
+      behavior: "smooth"
+    });
+
+    window.setTimeout(() => {
+      const loopWidth = loopWidthRef.current;
+
+      if (loopWidth && scroller.scrollLeft >= loopWidth) {
+        scroller.scrollLeft -= loopWidth;
+      }
+
+      if (loopWidth && scroller.scrollLeft < 0) {
+        scroller.scrollLeft += loopWidth;
+      }
+
+      isInteractingRef.current = false;
+    }, 380);
+  };
 
   return (
     <section className="section">
       <p className="section-label">Shots</p>
       <p className="section-note">A collection of interface explorations and visual experiments.</p>
-      <div className="shots-marquee" aria-label="Shots carousel" data-reveal>
-        <div className="shots-track" ref={trackRef}>
+      <div
+        className="shots-marquee"
+        aria-label="Shots carousel"
+        data-reveal
+        onMouseEnter={() => {
+          isHoveringRef.current = true;
+        }}
+        onMouseLeave={() => {
+          isHoveringRef.current = false;
+          isInteractingRef.current = false;
+        }}
+      >
+        <button
+          type="button"
+          className="shots-arrow shots-arrow--prev"
+          aria-label="Show previous shots"
+          onClick={() => nudgeCarousel(-1)}
+        >
+          <ArrowLeftIcon className="lucide-icon" />
+        </button>
+        <div
+          className="shots-scroller"
+          ref={scrollerRef}
+          onPointerDown={() => {
+            isInteractingRef.current = true;
+          }}
+          onPointerUp={() => {
+            isInteractingRef.current = false;
+          }}
+          onPointerCancel={() => {
+            isInteractingRef.current = false;
+          }}
+          onTouchStart={() => {
+            isInteractingRef.current = true;
+          }}
+          onTouchEnd={() => {
+            isInteractingRef.current = false;
+          }}
+          onScroll={() => {
+            const loopWidth = loopWidthRef.current;
+            const scroller = scrollerRef.current;
+
+            if (!scroller || !loopWidth) {
+              return;
+            }
+
+            if (scroller.scrollLeft >= loopWidth) {
+              scroller.scrollLeft -= loopWidth;
+            }
+          }}
+        >
+          <div className="shots-track">
           {marqueeItems.map((item, index) => (
             <article
               className="shot-card"
@@ -72,11 +154,21 @@ export function ShotsSection({ items, onOpenLightbox }: ShotsSectionProps) {
               <ManagedImage
                 src={item.src}
                 alt={index >= items.length ? "" : item.alt}
+                critical={index < 3}
                 onActivate={(src, alt) => onOpenLightbox({ src, alt })}
               />
             </article>
           ))}
+          </div>
         </div>
+        <button
+          type="button"
+          className="shots-arrow shots-arrow--next"
+          aria-label="Show more shots"
+          onClick={() => nudgeCarousel(1)}
+        >
+          <ArrowRightIcon className="lucide-icon" />
+        </button>
       </div>
     </section>
   );

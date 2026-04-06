@@ -173,21 +173,27 @@ export const projects: ProjectDetail[] = [
     externalUrl: "https://www.behance.net/gallery/246269121/Mirar-Bill-Tracking-App?platform=direct",
     sections: [
       {
-        title: "Product Vision",
+        title: "Onboarding & Setup",
         body:
-          "I designed Mirar as an end-to-end product, defining a clear awareness-first approach to financial management. Instead of focusing on saving, I centered the experience on helping users understand what bills are due, when they're due, and how much is needed, introducing concepts like Minimum Required Today (MRT).",
+          "The onboarding flow introduces users to Mirar's core value through simple, visual screens that highlight bill tracking, account connection, and financial awareness. It is designed to be quick and low-effort, helping users understand the product immediately and guiding them into setting up their first bills and accounts without friction.",
         images: ["/mirar project descp. images/Product Vision/iPhone 16 Pro.png"]
       },
       {
-        title: "User Research",
+        title: "Home (Dashboard)",
         body:
-          "I conducted research and competitor analysis to understand user behavior. I found that users juggle multiple apps, struggle to follow budgets, and lack a clear view of upcoming bills, which led me to focus on visibility and timely prompts rather than adding more financial tools.",
+          "The home screen is the central hub where users get a complete snapshot of their financial state. It highlights the Minimum Required Today, quick actions like adding bills or updating balances, and a preview of upcoming bills. This layout allows users to instantly understand what needs attention while giving them fast access to key actions without navigating away.",
+        images: ["/mirar project descp. images/UIUX Design/Mockup 14.png"]
+      },
+      {
+        title: "Insights",
+        body:
+          "The insights page provides a structured overview of the user's financial behavior and bill performance. It includes metrics like total bills, upcoming bills, missed payments, and a visual payment summary, along with trends over time. This helps users move from simple awareness to deeper understanding, enabling better financial decisions.",
         images: ["/mirar project descp. images/User Research/Frame 1618869509.png"]
       },
       {
-        title: "Product Structure",
+        title: "Bills & Bill Details (Including Add Bill)",
         body:
-          "I built the information architecture and user flows from scratch, mapping key journeys like onboarding, adding bills, and taking action. I ensured the experience remained fast and intuitive by following a three-tap rule and prioritizing clear, actionable paths.",
+          "The bills section organizes all bills into a clear, scannable list, making it easy to track what is due and when. Users can add new bills quickly, ensuring their data stays up to date. The bill details screen provides deeper information such as amount, due date, account, and history, while allowing users to take action through options like marking as paid or setting aside funds. This flow ensures users can both manage and act on their bills efficiently.",
         images: [
           "/mirar project descp. images/Product Structure/Frame 2147223333.png",
           "/mirar project descp. images/Product Structure/Frame 2147223339.png"
@@ -195,21 +201,20 @@ export const projects: ProjectDetail[] = [
         singleColumn: true
       },
       {
-        title: "UI/UX Design",
+        title: "Accounts (Including Add Account & Update Balance)",
         body:
-          "I designed the full interface with a clean, modern fintech aesthetic, focusing on clarity and hierarchy. I created all core screens and refined interactions, states, and content to ensure users always know what to do next.",
+          "The accounts section gives users visibility into where their money is and how it aligns with upcoming bills. Users can add new accounts, view balances across different banks, and update balances manually to keep information accurate. The account details screen shows assigned bills and required amounts, helping users understand how each account contributes to covering their financial responsibilities.",
         images: [
-          "/mirar project descp. images/UIUX Design/Mockup 14.png",
           "/mirar project descp. images/UIUX Design/Mockup 9.png",
-          "/mirar project descp. images/UIUX Design/Mockup Ribbon 13.png"
+          "/mirar project descp. images/Brand & Presentation/Frame 2147223340.png"
         ]
       },
       {
-        title: "Brand & Presentation",
+        title: "Notifications",
         body:
-          "I developed the Mirar brand identity, including the logo, color system, and visual direction. I also created marketing assets and a detailed case study to clearly communicate both the product and my design process.",
+          "The notifications page keeps users informed about important events such as due bills, shortfalls, missed payments, and recorded transactions. Each notification provides context and links directly to a detailed view where users can take immediate action, such as adding funds. This ensures users are not only aware of issues but are also guided toward resolving them quickly.",
         images: [
-          "/mirar project descp. images/Brand & Presentation/Frame 2147223340.png",
+          "/mirar project descp. images/UIUX Design/Mockup Ribbon 13.png",
           "/mirar project descp. images/Brand & Presentation/Gemini_Generated_Image_4ur82x4ur82x4ur8 1.png"
         ]
       }

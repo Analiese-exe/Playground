@@ -23,6 +23,8 @@ export function ManagedImage({
   const optimizedSrc = useMemo(() => getManagedAssetPath(originalSrc), [originalSrc]);
   const [currentSrc, setCurrentSrc] = useState(optimizedSrc);
   const touchActivatedRef = useRef(false);
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
+  const touchMovedRef = useRef(false);
 
   useEffect(() => {
     setCurrentSrc(optimizedSrc);
@@ -48,7 +50,7 @@ export function ManagedImage({
   const handlePointerUp = (event: PointerEvent<HTMLImageElement>) => {
     props.onPointerUp?.(event);
 
-    if (!onActivate || event.pointerType === "mouse") {
+    if (!onActivate || event.pointerType !== "pen") {
       return;
     }
 
@@ -62,7 +64,9 @@ export function ManagedImage({
   const handleTouchEnd = (event: TouchEvent<HTMLImageElement>) => {
     props.onTouchEnd?.(event);
 
-    if (!onActivate) {
+    if (!onActivate || touchMovedRef.current) {
+      touchStartRef.current = null;
+      touchMovedRef.current = false;
       return;
     }
 
@@ -72,6 +76,42 @@ export function ManagedImage({
     window.setTimeout(() => {
       touchActivatedRef.current = false;
     }, 0);
+    touchStartRef.current = null;
+    touchMovedRef.current = false;
+  };
+
+  const handleTouchStart = (event: TouchEvent<HTMLImageElement>) => {
+    props.onTouchStart?.(event);
+    const touch = event.touches[0];
+
+    if (!touch) {
+      return;
+    }
+
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+    touchMovedRef.current = false;
+  };
+
+  const handleTouchMove = (event: TouchEvent<HTMLImageElement>) => {
+    props.onTouchMove?.(event);
+
+    const start = touchStartRef.current;
+    const touch = event.touches[0];
+
+    if (!start || !touch) {
+      return;
+    }
+
+    if (Math.abs(touch.clientX - start.x) > 10 || Math.abs(touch.clientY - start.y) > 10) {
+      touchMovedRef.current = true;
+    }
+  };
+
+  const handleTouchCancel = (event: TouchEvent<HTMLImageElement>) => {
+    props.onTouchCancel?.(event);
+    touchStartRef.current = null;
+    touchMovedRef.current = false;
+    touchActivatedRef.current = false;
   };
 
   return (
@@ -91,7 +131,10 @@ export function ManagedImage({
         touchActivatedRef.current = false;
       }}
       onPointerUp={handlePointerUp}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
+      onTouchCancel={handleTouchCancel}
       onKeyDown={handleKeyDown}
       onError={() => {
         if (currentSrc !== originalSrc) {

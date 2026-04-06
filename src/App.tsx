@@ -33,6 +33,9 @@ function AppContent() {
   return (
     <>
       <Routes>
+        <Route path="/projects/aegis.html" element={<Navigate to="/projects/aegis" replace />} />
+        <Route path="/projects/kora" element={<Navigate to="/projects/aegis" replace />} />
+        <Route path="/projects/kora.html" element={<Navigate to="/projects/aegis" replace />} />
         <Route
           path="/"
           element={

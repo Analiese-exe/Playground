@@ -7,6 +7,7 @@ import { ManagedImage } from "@/components/ManagedImage";
 import { ProjectCaseStudy } from "@/components/ProjectCaseStudy";
 import { ProjectPagination } from "@/components/ProjectPagination";
 import { projectMap } from "@/data/portfolio";
+import { preloadManagedAssets } from "@/lib/assets";
 import type { ProjectSlug } from "@/types/portfolio";
 
 interface ProjectPageProps {
@@ -20,6 +21,8 @@ export function ProjectPage({ onOpenLightbox }: ProjectPageProps) {
   useEffect(() => {
     if (project) {
       document.title = `${project.title} - Ukeje Analiese`;
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      preloadManagedAssets([project.coverImage, ...project.sections.flatMap((section) => section.images)]);
     }
   }, [project]);
 
