@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { KeyboardEvent, ImgHTMLAttributes, PointerEvent } from "react";
+import type { KeyboardEvent, ImgHTMLAttributes, PointerEvent, TouchEvent } from "react";
 
 import { getManagedAssetPath, toAssetUrl } from "@/lib/assets";
 
@@ -29,7 +29,7 @@ export function ManagedImage({
   }, [optimizedSrc]);
 
   const handleOpen = () => {
-    onActivate?.(originalSrc, alt);
+    onActivate?.(currentSrc, alt);
   };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLImageElement>) => {
@@ -59,6 +59,21 @@ export function ManagedImage({
     }, 0);
   };
 
+  const handleTouchEnd = (event: TouchEvent<HTMLImageElement>) => {
+    props.onTouchEnd?.(event);
+
+    if (!onActivate) {
+      return;
+    }
+
+    touchActivatedRef.current = true;
+    event.preventDefault();
+    handleOpen();
+    window.setTimeout(() => {
+      touchActivatedRef.current = false;
+    }, 0);
+  };
+
   return (
     <img
       {...props}
@@ -76,6 +91,7 @@ export function ManagedImage({
         touchActivatedRef.current = false;
       }}
       onPointerUp={handlePointerUp}
+      onTouchEnd={handleTouchEnd}
       onKeyDown={handleKeyDown}
       onError={() => {
         if (currentSrc !== originalSrc) {

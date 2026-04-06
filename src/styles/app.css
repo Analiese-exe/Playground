@@ -1875,3 +1875,14 @@ button {
     padding: 10px 12px;
   }
 }
+
+.section-note,
+.award-description {
+  max-width: none;
+  width: 100%;
+}
+
+.identity-avatar {
+  object-fit: cover;
+  object-position: center;
+}

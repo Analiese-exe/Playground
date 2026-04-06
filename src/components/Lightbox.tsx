@@ -55,7 +55,16 @@ export function Lightbox({ image, onClose }: LightboxProps) {
       >
         <XIcon className="lightbox-close-icon" />
       </button>
-      {image ? <img src={toAssetUrl(image.src)} alt={image.alt} /> : null}
+      {image ? (
+        <img
+          key={image.src}
+          src={toAssetUrl(image.src)}
+          alt={image.alt}
+          loading="eager"
+          decoding="sync"
+          fetchPriority="high"
+        />
+      ) : null}
     </div>
   );
 }
