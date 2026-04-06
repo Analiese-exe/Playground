@@ -14,7 +14,7 @@ export const profile: Profile = {
   name: "Ukeje Analiese",
   role: "Product Designer",
   email: "ao.ukeje@gmail.com",
-  avatarSrc: "/Gemini_Generated_Image_viaoniviaoniviao.png"
+  avatarSrc: "/avatar-face.png"
 };
 
 export const heroContent: HeroContent = {

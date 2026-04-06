@@ -1882,7 +1882,28 @@ button {
   width: 100%;
 }
 
+.identity-avatar-wrap {
+  width: 68px;
+  height: 68px;
+  flex-basis: 68px;
+}
+
 .identity-avatar {
   object-fit: cover;
   object-position: center;
+  image-rendering: auto;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  overflow: hidden;
+}
+
+.project-thumb {
+  aspect-ratio: 1.26;
+}
+
+.project-thumb img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: cover;
 }
