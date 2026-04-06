@@ -179,7 +179,8 @@ export const projects: ProjectDetail[] = [
         images: [
           "/Mirar descp images/onboarding/onboarding light mode.png",
           "/Mirar descp images/onboarding/onboarding dark mode.png"
-        ]
+        ],
+        singleColumn: true
       },
       {
         title: "Home (Dashboard)",
@@ -215,9 +216,10 @@ export const projects: ProjectDetail[] = [
           "The accounts section gives users visibility into where their money is and how it aligns with upcoming bills. Users can add new accounts, view balances across different banks, and update balances manually to keep information accurate. The account details screen shows assigned bills and required amounts, helping users understand how each account contributes to covering their financial responsibilities.",
         images: [
           "/Mirar descp images/Accounts/account and account details  light mode.png",
-          "/Mirar descp images/Accounts/add account and update balance light mode.png"
-        ],
-        singleColumn: true
+          "/Mirar descp images/Accounts/account and account details  dark mode.png",
+          "/Mirar descp images/Accounts/add account and update balance light mode.png",
+          "/Mirar descp images/Accounts/add account and update balance dark mode.png"
+        ]
       },
       {
         title: "Notifications",
