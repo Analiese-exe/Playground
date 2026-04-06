@@ -24,24 +24,12 @@ export function ThemeToggle({ theme, onToggle }: ThemeToggleProps) {
     <button
       ref={buttonRef}
       type="button"
-      className="theme-switch"
+      className="theme-mode-button"
       aria-label={isLight ? "Switch to dark mode" : "Switch to light mode"}
-      aria-pressed={isLight}
       title={isLight ? "Switch to dark mode" : "Switch to light mode"}
       onClick={handleClick}
     >
-      <span className="theme-switch-track" aria-hidden="true">
-        <span className="theme-switch-slot theme-switch-slot-light">
-          <SunIcon className="theme-switch-icon" />
-        </span>
-        <span className="theme-switch-slot theme-switch-slot-dark">
-          <MoonIcon className="theme-switch-icon" />
-        </span>
-        <span className="theme-switch-thumb">
-          <SunIcon className="theme-switch-thumb-icon theme-switch-thumb-sun" />
-          <MoonIcon className="theme-switch-thumb-icon theme-switch-thumb-moon" />
-        </span>
-      </span>
+      {isLight ? <MoonIcon className="lucide-icon" /> : <SunIcon className="lucide-icon" />}
     </button>
   );
 }

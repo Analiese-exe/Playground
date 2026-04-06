@@ -23,6 +23,7 @@ export function useUiAudio() {
   const [isAmbientEnabled, setIsAmbientEnabled] = useState(false);
   const ambientRef = useRef<HTMLAudioElement | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
+  const lastTouchSoundAtRef = useRef(0);
 
   useEffect(() => {
     const ambient = new Audio("/audio/portfolio-ambient.mp3");
@@ -82,22 +83,42 @@ export function useUiAudio() {
   }, [ensureAudioContext]);
 
   useEffect(() => {
-    const handlePointerDown = (event: PointerEvent) => {
+    const shouldPlayForTarget = (target: HTMLElement | null) =>
+      !!target &&
+      !target.closest("[data-no-click-sound='true']") &&
+      !!target.closest("a, button, [role='button'], input, textarea, select, label");
+
+    const handleTouchEnd = (event: TouchEvent) => {
       const target = event.target as HTMLElement | null;
 
-      if (
-        !target ||
-        target.closest("[data-no-click-sound='true']") ||
-        !target.closest("a, button, [role='button'], input, textarea, select, label")
-      ) {
+      if (!shouldPlayForTarget(target)) {
+        return;
+      }
+
+      lastTouchSoundAtRef.current = Date.now();
+      void playClickSound();
+    };
+
+    const handleClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement | null;
+
+      if (!shouldPlayForTarget(target)) {
+        return;
+      }
+
+      if (Date.now() - lastTouchSoundAtRef.current < 450) {
         return;
       }
 
       void playClickSound();
     };
 
-    document.addEventListener("pointerdown", handlePointerDown, true);
-    return () => document.removeEventListener("pointerdown", handlePointerDown, true);
+    document.addEventListener("touchend", handleTouchEnd, true);
+    document.addEventListener("click", handleClick, true);
+    return () => {
+      document.removeEventListener("touchend", handleTouchEnd, true);
+      document.removeEventListener("click", handleClick, true);
+    };
   }, [playClickSound]);
 
   const toggleAmbient = useCallback(async () => {

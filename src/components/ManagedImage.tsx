@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
-import type { KeyboardEvent, ImgHTMLAttributes } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import type { KeyboardEvent, ImgHTMLAttributes, PointerEvent } from "react";
 
 import { getManagedAssetPath, toAssetUrl } from "@/lib/assets";
 
@@ -22,6 +22,7 @@ export function ManagedImage({
   const originalSrc = useMemo(() => (src.startsWith("/") ? src : `/${src}`), [src]);
   const optimizedSrc = useMemo(() => getManagedAssetPath(originalSrc), [originalSrc]);
   const [currentSrc, setCurrentSrc] = useState(optimizedSrc);
+  const touchActivatedRef = useRef(false);
 
   useEffect(() => {
     setCurrentSrc(optimizedSrc);
@@ -44,6 +45,20 @@ export function ManagedImage({
     }
   };
 
+  const handlePointerUp = (event: PointerEvent<HTMLImageElement>) => {
+    props.onPointerUp?.(event);
+
+    if (!onActivate || event.pointerType === "mouse") {
+      return;
+    }
+
+    touchActivatedRef.current = true;
+    handleOpen();
+    window.setTimeout(() => {
+      touchActivatedRef.current = false;
+    }, 0);
+  };
+
   return (
     <img
       {...props}
@@ -51,14 +66,16 @@ export function ManagedImage({
       alt={alt}
       loading={critical ? "eager" : "lazy"}
       decoding="async"
-      fetchPriority={critical ? "high" : "low"}
+      fetchPriority={critical ? "high" : "auto"}
       data-original-src={originalSrc}
       onClick={(event) => {
         onClick?.(event);
-        if (onActivate) {
+        if (onActivate && !touchActivatedRef.current) {
           handleOpen();
         }
+        touchActivatedRef.current = false;
       }}
+      onPointerUp={handlePointerUp}
       onKeyDown={handleKeyDown}
       onError={() => {
         if (currentSrc !== originalSrc) {

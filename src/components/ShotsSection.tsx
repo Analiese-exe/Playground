@@ -36,7 +36,7 @@ export function ShotsSection({ items, onOpenLightbox }: ShotsSectionProps) {
     const tick = (time: number) => {
       const delta = (time - previousTime) / 1000;
       previousTime = time;
-      const speed = window.innerWidth <= 720 ? 11.5 : 17.5;
+      const speed = window.innerWidth <= 720 ? 15.5 : 22.5;
 
       offset -= speed * delta;
 
