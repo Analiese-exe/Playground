@@ -1,3 +1,5 @@
+import type { CSSProperties } from "react";
+
 import { ManagedImage } from "@/components/ManagedImage";
 import type { LightboxImage } from "@/components/Lightbox";
 import type { ProjectDetail } from "@/types/portfolio";
@@ -24,6 +26,9 @@ export function ProjectCaseStudy({ project, onOpenLightbox }: ProjectCaseStudyPr
         const gridClass = `grid-${Math.min(section.images.length, 4)}`;
         const isSingleColumn = section.singleColumn || section.images.length === 1;
         const containClass = section.containImages ? " is-contain" : "";
+        const gridStyle = section.imageAspectRatio
+          ? ({ "--case-image-ratio": section.imageAspectRatio } as CSSProperties)
+          : undefined;
 
         return (
           <article className="case-section" key={section.title} data-reveal>
@@ -34,6 +39,7 @@ export function ProjectCaseStudy({ project, onOpenLightbox }: ProjectCaseStudyPr
               <>
                 <div
                   className={`case-grid ${gridClass}${isSingleColumn ? " is-single-column" : ""}${containClass}`}
+                  style={gridStyle}
                 >
                   {section.images.map((imagePath, index) => (
                     <ManagedImage

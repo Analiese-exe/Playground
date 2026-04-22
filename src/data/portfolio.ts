@@ -62,17 +62,21 @@ export const projects: ProjectDetail[] = [
           "/rodney project desc. images/Problem & Product Vision/Frame 1000007789.png",
           "/rodney project desc. images/Problem & Product Vision/Frame 1000007790.png"
         ],
-        containImages: true
+        containImages: true,
+        imageAspectRatio: "1.39"
       },
       {
         title: "2. Accessibility & Research-Driven Design",
         body:
           "I grounded the product in accessibility and inclusive UX research, especially for ADHD, dyslexia, and autism. This influenced decisions like structured layouts, reduced cognitive load, and sensory-aware design. Accessibility was built into the core through features like text-to-speech, speech-to-text, dyslexia fonts, and keyboard navigation, rather than being added later.",
         images: [
-          "/rodney project desc. images/Accessibility & Research-Driven Design/Dashboard autism.png",
-          "/rodney project desc. images/Accessibility & Research-Driven Design/Dashboard dyslexic.png"
+          "/rodney project desc. images/Accessibility & Research-Driven Design/Frame 1000007791.png",
+          "/rodney project desc. images/Accessibility & Research-Driven Design/Frame 1000007792.png",
+          "/rodney project desc. images/Accessibility & Research-Driven Design/Frame 1000007794.png",
+          "/rodney project desc. images/Accessibility & Research-Driven Design/Frame 1000007793.png"
         ],
-        singleColumn: true
+        containImages: true,
+        imageAspectRatio: "1.46"
       },
       {
         title: "3. Core Features & System Integration",

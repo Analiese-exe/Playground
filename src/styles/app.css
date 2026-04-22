@@ -2044,7 +2044,7 @@ button {
 .case-grid.is-contain img {
   width: 100%;
   min-height: 0;
-  aspect-ratio: 1.39;
+  aspect-ratio: var(--case-image-ratio, 1.39);
   height: auto;
   object-fit: contain;
   object-position: center;

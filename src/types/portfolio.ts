@@ -68,6 +68,7 @@ export interface ProjectSection {
   images: string[];
   singleColumn?: boolean;
   containImages?: boolean;
+  imageAspectRatio?: string;
 }
 
 export interface ProjectDetail extends ProjectSummary {
