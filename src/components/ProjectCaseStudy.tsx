@@ -23,6 +23,7 @@ export function ProjectCaseStudy({ project, onOpenLightbox }: ProjectCaseStudyPr
       {project.sections.map((section, sectionIndex) => {
         const gridClass = `grid-${Math.min(section.images.length, 4)}`;
         const isSingleColumn = section.singleColumn || section.images.length === 1;
+        const containClass = section.containImages ? " is-contain" : "";
 
         return (
           <article className="case-section" key={section.title} data-reveal>
@@ -31,7 +32,9 @@ export function ProjectCaseStudy({ project, onOpenLightbox }: ProjectCaseStudyPr
 
             {section.images.length ? (
               <>
-                <div className={`case-grid ${gridClass}${isSingleColumn ? " is-single-column" : ""}`}>
+                <div
+                  className={`case-grid ${gridClass}${isSingleColumn ? " is-single-column" : ""}${containClass}`}
+                >
                   {section.images.map((imagePath, index) => (
                     <ManagedImage
                       key={`${section.title}-${imagePath}`}

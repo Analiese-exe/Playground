@@ -59,10 +59,10 @@ export const projects: ProjectDetail[] = [
         body:
           "I designed Rodney to solve the gap in traditional study tools that fail neurodiverse learners. Most platforms are fragmented and one-size-fits-all, which leads to frustration and disengagement. Rodney was positioned as a unified, accessibility-first learning platform that helps students focus, retain information, and study effectively through a single, cohesive system.",
         images: [
-          "/rodney project desc. images/Problem & Product Vision/Dashboard.png",
-          "/rodney project desc. images/Problem & Product Vision/Dashboard2.png"
+          "/rodney project desc. images/Problem & Product Vision/Frame 1000007789.png",
+          "/rodney project desc. images/Problem & Product Vision/Frame 1000007790.png"
         ],
-        singleColumn: true
+        containImages: true
       },
       {
         title: "2. Accessibility & Research-Driven Design",
