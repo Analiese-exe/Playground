@@ -54,7 +54,7 @@ export const projects: ProjectDetail[] = [
       "Rodney is an accessibility-first study platform designed to bring structure, personalization, and inclusive learning tools into one calm experience.",
     coverCaption: "RodneyAI overview",
     testimonial: {
-      author: "Emmanuella Chukwuma",
+      author: "Emmanuella Chukwuma (collaborator, RodneyAI)",
       quote:
         "Working with Analiese on Rodney was an amazing experience. She really cared about the students we were designing for, and it showed in every detail. She kept things simple, but everything had purpose behind it."
     },
@@ -185,7 +185,7 @@ export const projects: ProjectDetail[] = [
     coverCaption: "Mirar overview",
     externalUrl: "https://www.behance.net/gallery/246269121/Mirar-Bill-Tracking-App?platform=direct",
     testimonial: {
-      author: "Charles Grant",
+      author: "Charles Grant (Vice President JP Morgan Chase)",
       quote:
         "I hired Analiese to design the UI for a personal app, and she was brilliant. Her work is genuinely creative, the kind that makes you feel like this is where design is heading. Beyond the work itself, she was reliable, proactive, and always kept me in the loop. That combination is rare. I highly recommend her."
     },
@@ -271,7 +271,7 @@ export const projects: ProjectDetail[] = [
     coverCaption: "Bridgent Consulting overview",
     externalUrl: "https://www.bridgent.org/",
     testimonial: {
-      author: "Humu Fadil Gariba",
+      author: "Humu Fadil Gariba (Founder Bridgent Consulting)",
       quote:
         "Analiese just gets it. She understood what we were trying to communicate and translated it into something clean, structured, and confident."
     },
@@ -322,7 +322,7 @@ export const projects: ProjectDetail[] = [
     coverCaption: "Ayinke Consulting overview",
     externalUrl: "https://www.ayinkeconsultinginc.com/",
     testimonial: {
-      author: "Humu Fadil Gariba",
+      author: "Humu Fadil Gariba (Founder Bridgent Consulting)",
       quote:
         "She's very thoughtful in how she works. The final experience felt simple, professional, and easy to trust."
     },
@@ -372,8 +372,9 @@ export const projects: ProjectDetail[] = [
       "ARA was redesigned to make shopping feel more guided, conversion-focused, and easy to understand through clearer paths and stronger product storytelling.",
     coverCaption: "ARA overview",
     testimonial: {
-      author: "Tolu Adeyemi",
-      quote: "Analiese made the experience feel natural and easy from the start. Nothing felt forced."
+      author: "Tolu Adeyemi (CEO Ara Novelty)",
+      quote:
+        "Analiese brought a really nice balance of creativity and structure to Ara. She understood that E-commerce could be complex at times, so she made sure the experience reflected that without becoming confusing or overwhelming."
     },
     sections: [
       {

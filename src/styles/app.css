@@ -2062,7 +2062,7 @@ button {
   display: grid;
   gap: 10px;
   margin: 46px 0 0;
-  max-width: 760px;
+  width: 100%;
 }
 
 .project-testimonial blockquote,
