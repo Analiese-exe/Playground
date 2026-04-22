@@ -53,6 +53,11 @@ export const projects: ProjectDetail[] = [
     intro:
       "Rodney is an accessibility-first study platform designed to bring structure, personalization, and inclusive learning tools into one calm experience.",
     coverCaption: "RodneyAI overview",
+    testimonial: {
+      author: "Emmanuella Chukwuma",
+      quote:
+        "Working with Analiese on Rodney was an amazing experience. She really cared about the students we were designing for, and it showed in every detail. She kept things simple, but everything had purpose behind it."
+    },
     sections: [
       {
         title: "1. Problem & Product Vision",
@@ -98,11 +103,11 @@ export const projects: ProjectDetail[] = [
         body:
           "I developed an AI Coach that analyzes user behavior, generates study materials, and provides personalized feedback. It adapts to each learner's pace while remaining optional and user-controlled, ensuring AI supports rather than overwhelms the experience.",
         images: [
-          "/rodney project desc. images/AI & Personalization/ask rodney light.png",
-          "/rodney project desc. images/AI & Personalization/ask rodney.png",
-          "/rodney project desc. images/AI & Personalization/ask rodney1.png"
+          "/rodney project desc. images/AI & Personalization/Frame 1000007803.png",
+          "/rodney project desc. images/AI & Personalization/Frame 1000007804.png"
         ],
-        singleColumn: true
+        containImages: true,
+        imageAspectRatio: "1.46"
       },
       {
         title: "5. Innovation & Recognition",
@@ -179,6 +184,11 @@ export const projects: ProjectDetail[] = [
       "Mirar was shaped as a visibility-first money experience, helping users understand what is due, what matters today, and what action to take next.",
     coverCaption: "Mirar overview",
     externalUrl: "https://www.behance.net/gallery/246269121/Mirar-Bill-Tracking-App?platform=direct",
+    testimonial: {
+      author: "Charles Grant",
+      quote:
+        "I hired Analiese to design the UI for a personal app, and she was brilliant. Her work is genuinely creative, the kind that makes you feel like this is where design is heading. Beyond the work itself, she was reliable, proactive, and always kept me in the loop. That combination is rare. I highly recommend her."
+    },
     sections: [
       {
         title: "Onboarding & Setup",
@@ -260,6 +270,11 @@ export const projects: ProjectDetail[] = [
       "Bridgent Consulting translates complex strategic systems into a clear digital narrative built around structure, readability, and long-term scale.",
     coverCaption: "Bridgent Consulting overview",
     externalUrl: "https://www.bridgent.org/",
+    testimonial: {
+      author: "Humu Fadil Gariba",
+      quote:
+        "Analiese just gets it. She understood what we were trying to communicate and translated it into something clean, structured, and confident."
+    },
     sections: [
       {
         title: "1. Information Architecture for Complex Systems",
@@ -306,6 +321,11 @@ export const projects: ProjectDetail[] = [
       "Ayinke Consulting was designed as a calm and scalable consulting website where service clarity, hierarchy, and structure do most of the communication work.",
     coverCaption: "Ayinke Consulting overview",
     externalUrl: "https://www.ayinkeconsultinginc.com/",
+    testimonial: {
+      author: "Humu Fadil Gariba",
+      quote:
+        "She's very thoughtful in how she works. The final experience felt simple, professional, and easy to trust."
+    },
     sections: [
       {
         title: "1. Information Architecture & Service Structuring",
@@ -351,6 +371,10 @@ export const projects: ProjectDetail[] = [
     intro:
       "ARA was redesigned to make shopping feel more guided, conversion-focused, and easy to understand through clearer paths and stronger product storytelling.",
     coverCaption: "ARA overview",
+    testimonial: {
+      author: "Tolu Adeyemi",
+      quote: "Analiese made the experience feel natural and easy from the start. Nothing felt forced."
+    },
     sections: [
       {
         title: "Redefining the Shopping Experience",

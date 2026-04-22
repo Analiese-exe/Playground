@@ -2057,3 +2057,49 @@ button {
     gap: 8px;
   }
 }
+
+.project-testimonial {
+  display: grid;
+  gap: 10px;
+  margin: 46px 0 0;
+  max-width: 760px;
+}
+
+.project-testimonial blockquote,
+.project-testimonial p {
+  margin: 0;
+}
+
+.project-testimonial p {
+  color: var(--text);
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.75;
+}
+
+.project-testimonial p::before {
+  content: "\"";
+}
+
+.project-testimonial p::after {
+  content: "\"";
+}
+
+.project-testimonial figcaption {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+@media (max-width: 520px) {
+  .project-testimonial {
+    margin-top: 38px;
+  }
+
+  .project-testimonial p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+}

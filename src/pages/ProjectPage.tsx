@@ -6,6 +6,7 @@ import type { LightboxImage } from "@/components/Lightbox";
 import { ManagedImage } from "@/components/ManagedImage";
 import { ProjectCaseStudy } from "@/components/ProjectCaseStudy";
 import { ProjectPagination } from "@/components/ProjectPagination";
+import { ProjectTestimonial } from "@/components/ProjectTestimonial";
 import { projectMap } from "@/data/portfolio";
 import { preloadManagedAssets } from "@/lib/assets";
 import type { ProjectSlug } from "@/types/portfolio";
@@ -85,6 +86,7 @@ export function ProjectPage({ onOpenLightbox }: ProjectPageProps) {
       </section>
 
       <ProjectCaseStudy project={project} onOpenLightbox={onOpenLightbox} />
+      <ProjectTestimonial testimonial={project.testimonial} />
       <ProjectPagination currentSlug={project.slug} />
     </main>
   );

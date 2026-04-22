@@ -71,10 +71,16 @@ export interface ProjectSection {
   imageAspectRatio?: string;
 }
 
+export interface ProjectTestimonial {
+  author: string;
+  quote: string;
+}
+
 export interface ProjectDetail extends ProjectSummary {
   meta: string;
   intro: string;
   coverCaption: string;
   externalUrl?: string;
+  testimonial?: ProjectTestimonial;
   sections: ProjectSection[];
 }
