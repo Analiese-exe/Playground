@@ -83,11 +83,15 @@ export const projects: ProjectDetail[] = [
         body:
           "I designed Rodney as an all-in-one study environment combining flashcards, notes, practice tests, and structured study sessions. Features like spaced repetition, AI-generated content, and real-time study interactions create a seamless workflow, eliminating the need for multiple tools.",
         images: [
-          "/rodney project desc. images/Core Features & System Integration/Flahscard.png",
-          "/rodney project desc. images/Core Features & System Integration/Practice test.png",
-          "/rodney project desc. images/Core Features & System Integration/Study session expanded.png"
+          "/rodney project desc. images/Core Features & System Integration/Frame 1000007795.png",
+          "/rodney project desc. images/Core Features & System Integration/Frame 1000007796.png",
+          "/rodney project desc. images/Core Features & System Integration/Frame 1000007797.png",
+          "/rodney project desc. images/Core Features & System Integration/Frame 1000007798.png",
+          "/rodney project desc. images/Core Features & System Integration/Frame 1000007801.png",
+          "/rodney project desc. images/Core Features & System Integration/Frame 1000007802.png"
         ],
-        singleColumn: true
+        containImages: true,
+        imageAspectRatio: "1.46"
       },
       {
         title: "4. AI & Personalization",
